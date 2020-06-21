@@ -32,7 +32,7 @@ jobs:
       run: yarn install
 
     - name: Yarn Build
-      run: REACT_APP_API=SURGELEL yarn build
+      run: REACT_APP_API=${{secrets.COVID_API}} yarn build
     
     - name: Surge Deployment
       run: surge ./build eru-covid.surge.sh --token ${{ secrets.SURGE_TOKEN }} 

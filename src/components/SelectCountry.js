@@ -10,7 +10,7 @@ const SelectCountry = ({ country, handleCountryChange, data }) => (
         options={data}
         id="countryChooser"
         value={country}
-        style={{ width:300, margin:'auto' }}
+        style={{ width:600, margin:'auto' }}
         onChange={(event, newValue) => handleCountryChange(newValue)}
         renderInput={(params) => <TextField {...params} label="Country" margin="normal" variant="outlined"/>}
     />

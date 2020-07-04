@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    ...theme.typography.button,
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(1),
     flexGrow: 1,
     margin: "auto",
     textAlign: 'center',
@@ -13,30 +16,39 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
-    color: theme.palette.text.secondary,
+    fontSize: '1.3rem'
   },
+  recovered: {
+    backgroundColor: "aquamarine"
+  },
+  confirmed: {
+    backgroundColor: "lemonchiffon"
+  },
+  deaths: {
+    backgroundColor: "red"
+  }
 }));
 
-const GlobalData = ({data}) => {
+const GlobalData = ({ data }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Paper>
         <Typography variant="h2" gutterBottom>
-      Global Data
+          Global Data
       </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs>
-          <Paper className={classes.paper}>Total Recovered {data.TotalRecovered}</Paper>
+        <Grid container spacing={3}>
+          <Grid item xs>
+            <Paper className={`${classes.paper} ${classes.recovered}`} >Total Recovered {(data.TotalRecovered).toLocaleString()}</Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper className={`${classes.paper} ${classes.confirmed}`}>Total Confirmed: {(data.TotalConfirmed).toLocaleString()}</Paper>
+          </Grid>
+          <Grid item xs>
+            <Paper className={`${classes.paper} ${classes.deaths}`}>Total Deaths {(data.TotalDeaths).toLocaleString()}</Paper>
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-  <Paper className={classes.paper}>Total Confirmed: {data.TotalConfirmed}</Paper>
-        </Grid>
-        <Grid item xs>
-          <Paper className={classes.paper}>Total Deaths {data.TotalDeaths}</Paper>
-        </Grid>
-      </Grid>
       </Paper>
     </div>
   );

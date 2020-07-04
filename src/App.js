@@ -4,14 +4,21 @@ import GlobalData from './components/Globaldata';
 import CountryData from './components/Countrydata'
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
+import Appbar from './components/Appbar'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-      flexGrow: 1,
-      margin: "auto",
-      textAlign: 'center',
-      width:"90vw"
+    flexGrow: 1,
+    margin: "auto",
+    textAlign: 'center',
+    width: "80vw",
   },
+  appbar: {
+    paddingBottom: "2rem"
+  },
+  body: {
+    backgroundImage: "linear-gradient(to right, #ffecd2 0%, #fcb69f 100%)"
+  }
 }));
 
 
@@ -28,14 +35,14 @@ const App = () => {
         [
           {
             Country: "Pakistan",
-            CountryCode: "AF",
+            CountryCode: "PK",
             Slug: "pakistan",
-            NewConfirmed: 302,
-            TotalConfirmed: 32324,
-            NewDeaths: 12,
-            TotalDeaths: 819,
-            NewRecovered: 1290,
-            TotalRecovered: 17331,
+            NewConfirmed: 0,
+            TotalConfirmed: 0,
+            NewDeaths: 0,
+            TotalDeaths: 0,
+            NewRecovered: 0,
+            TotalRecovered: 0,
             Date: "2020-07-04T15:56:19Z"
           }
         ]
@@ -53,23 +60,27 @@ const App = () => {
     fetchData()
   }, [])
 
-  
+
 
   return (
-    <Grid
-      className={classes.root}
-      container
-      direction="column"
-      alignItems="stretch"
-      spacing={3}
-    >
-      <Grid item xs>
-        <GlobalData data={data.Global} />
+    <div className={classes.body}>
+      <Appbar className={classes.appbar} />
+      <Grid
+        className={classes.root}
+        container
+        direction="column"
+        alignItems="stretch"
+        spacing={3}
+      >
+
+        <Grid item xs>
+          <GlobalData data={data.Global} />
+        </Grid>
+        <Grid item>
+          <CountryData data={data.Countries} />
+        </Grid>
       </Grid>
-      <Grid item>
-        <CountryData data={data.Countries} />
-      </Grid>
-    </Grid>
+    </div>
   );
 }
 

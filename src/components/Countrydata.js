@@ -8,16 +8,28 @@ import CountryGraph from './Countrygraph'
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        ...theme.typography.button,
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(1),
         flexGrow: 1,
         margin: "auto",
         textAlign: 'center',
-    },
-    paper: {
+      },
+      paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
-}));
+        fontSize: '1.3rem'
+      },
+      recovered: {
+        backgroundColor: "aquamarine"
+      },
+      confirmed: {
+        backgroundColor: "lemonchiffon"
+      },
+      deaths: {
+        backgroundColor: "red"
+      }
+    }));
 
 const CountryData = ({ data }) => {
     const classes = useStyles();
@@ -41,13 +53,13 @@ const CountryData = ({ data }) => {
                         <SelectCountry country={country} handleCountryChange={handleCountryChange} data={countryNames} />
                     </Grid>
                     <Grid item xs>
-                        <Paper className={classes.paper}>Total Recovered {countryData.TotalRecovered}</Paper>
+                        <Paper className={`${classes.paper} ${classes.recovered}`}>Total Recovered {(countryData.TotalRecovered).toLocaleString()}</Paper>
                     </Grid>
                     <Grid item xs={6}>
-                        <Paper className={classes.paper}>Total Confirmed: {countryData.TotalConfirmed}</Paper>
+                        <Paper className={`${classes.paper} ${classes.confirmed}`}>Total Confirmed: {(countryData.TotalConfirmed).toLocaleString()}</Paper>
                     </Grid>
                     <Grid item xs>
-                        <Paper className={classes.paper}>Total Deaths {countryData.TotalDeaths}</Paper>
+                        <Paper className={`${classes.paper} ${classes.deaths}`}>Total Deaths {(countryData.TotalDeaths).toLocaleString()}</Paper>
                     </Grid>
                     <Grid item xs={12}>
                         <Paper>
